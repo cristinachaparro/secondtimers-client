@@ -7,6 +7,8 @@ import Error from "./pages/Error";
 import NotFound from "./pages/NotFound";
 import Signup from "./pages/auth/Signup";
 import Login from "./pages/auth/Login";
+import Home from "./pages/Home";
+import Destinations from "./pages/Destinations";
 
 function App() {
   return (
@@ -14,6 +16,10 @@ function App() {
       <h1>Hola</h1>
       <Navbar />
       <Routes>
+        {/* Routes */}
+        <Route path="/" element={<Home />} />
+        <Route path="/destinations" element={<Destinations />} />
+
         {/* Auth Routes */}
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />

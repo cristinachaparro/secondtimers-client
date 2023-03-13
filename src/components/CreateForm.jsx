@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { newPostService } from "../services/post.services";
+import {
+  getCategoriesService,
+  getCountriesService,
+  newPostService,
+} from "../services/post.services";
 
 import axios from "axios";
 
@@ -29,13 +33,15 @@ function CreateForm(props) {
   }, []);
 
   const getData = async () => {
-    const countryList = await axios.get(
-      "http://localhost:5005/api/destinations/country-list"
-    );
+    // const countryList = await axios.get(
+    //   "http://localhost:5005/api/destinations/country-list"
+    // );
+    const countryList = await getCountriesService();
     setCountryOptions(countryList.data);
-    const categoriesList = await axios.get(
-      "http://localhost:5005/api/destinations/categories"
-    );
+    // const categoriesList = await axios.get(
+    //   "http://localhost:5005/api/destinations/categories"
+    // );
+    const categoriesList = await getCategoriesService();
     setCategoryOptions(categoriesList.data);
     try {
     } catch (error) {}

@@ -1,5 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+
+import {
+  getCountriesService,
+  getCategoriesService,
+  getPostService,
+} from "../services/post.services";
 
 function EditForm() {
   const navigate = useNavigate();
@@ -21,6 +27,23 @@ function EditForm() {
   const handleDescriptionChange = (e) => setDescription(e.target.value);
   const handleImageChange = (e) => setImage(e.target.value);
   const handleCategoryChange = (e) => setCategory(e.target.value);
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    const countryList = await getCountriesService();
+    setCountryOptions(countryList.data);
+    const categoriesList = await getCategoriesService();
+    setCategoryOptions(categoriesList.data);
+    try {
+      const response = await getPostService(params.postId);
+      setTitle(response.data.title);
+    } catch (error) {
+      navigate("/error");
+    }
+  };
 
   const handlePost = async (e) => {
     e.preventDefault();

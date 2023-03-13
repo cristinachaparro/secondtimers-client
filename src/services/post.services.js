@@ -12,8 +12,28 @@ const updatedPost = (postId, updatedPost) => {
   return service.patch(`/destinations/${postId}`, updatedPost);
 };
 
-const getPost = (postId) => {
+const getPostService = (postId) => {
   return service.get(`/destinations/${postId}`);
 };
 
-export { newPostService, destinationsService, updatedPost, getPost };
+const deletePostService = (postId) => {
+  return service.delete(`/destinations/${postId}`);
+};
+
+const getCountriesService = () => {
+  return service.get("/destinations/country-list");
+};
+
+const getCategoriesService = () => {
+  return service.get("/destinations/categories");
+};
+
+export {
+  newPostService,
+  destinationsService,
+  updatedPost,
+  getPostService,
+  deletePostService,
+  getCountriesService,
+  getCategoriesService,
+};

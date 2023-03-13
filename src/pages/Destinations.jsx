@@ -33,8 +33,8 @@ function Destinations() {
       <Link to={"/destinations/create-form"}>Create</Link>
       {allPosts.map((eachPost) => {
         return (
-          <div>
-            <p key={eachPost._id}>
+          <div key={eachPost._id}>
+            <p>
               <Link to={`/destinations/${eachPost._id}`}>{eachPost.title}</Link>
             </p>
           </div>

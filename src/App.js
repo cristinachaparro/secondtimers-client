@@ -9,6 +9,7 @@ import Signup from "./pages/auth/Signup";
 import Login from "./pages/auth/Login";
 import Home from "./pages/Home";
 import Destinations from "./pages/Destinations";
+import CreateForm from "./components/CreateForm";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         {/* Routes */}
         <Route path="/" element={<Home />} />
         <Route path="/destinations" element={<Destinations />} />
+        <Route path="/destinations/create-form" element={<CreateForm />} />
 
         {/* Auth Routes */}
         <Route path="/signup" element={<Signup />} />

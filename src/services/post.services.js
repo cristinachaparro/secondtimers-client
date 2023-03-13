@@ -8,7 +8,7 @@ const destinationsService = () => {
   return service.get("/destinations");
 };
 
-const updatedPost = (postId, updatedPost) => {
+const updatedPostService = (postId, updatedPost) => {
   return service.patch(`/destinations/${postId}`, updatedPost);
 };
 
@@ -31,7 +31,7 @@ const getCategoriesService = () => {
 export {
   newPostService,
   destinationsService,
-  updatedPost,
+  updatedPostService,
   getPostService,
   deletePostService,
   getCountriesService,

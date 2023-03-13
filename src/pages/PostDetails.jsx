@@ -27,13 +27,15 @@ function PostDetails() {
     try {
       const response = await getPostService(params.postId);
       // response.data.creator.username;
-      console.log(response.data.creator.username);
+      //console.log(response.data.creator.username);
+      //console.log(response.data.image)
       setSinglePost(response.data);
       setIsFetching(false);
     } catch (error) {
       navigate("/error");
     }
   };
+  console.log(singlePost.image)
 
   return (
     <div>
@@ -43,7 +45,13 @@ function PostDetails() {
         <div>
           <h1>Post</h1>
           <h4>{singlePost.title}</h4>
-          <img src={singlePost.image} alt={singlePost.title} />
+          {singlePost.image.map((eachImage) => {
+        return (
+          <div key={eachImage.image}>
+            <img src={eachImage} alt="" />
+          </div>
+        );
+      })}
           <p>{singlePost.country}</p>
           <p>{singlePost.description}</p>
           <p>{singlePost.category}</p>

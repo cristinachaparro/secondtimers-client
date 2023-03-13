@@ -18,14 +18,29 @@ function CreateForm(props) {
   const [country, setCountry] = useState("");
   const [countryOptions, setCountryOptions] = useState([]);
   const [description, setDescription] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState([]);
   const [category, setCategory] = useState("");
   const [categoryOptions, setCategoryOptions] = useState([]);
 
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleCountryChange = (e) => setCountry(e.target.value);
   const handleDescriptionChange = (e) => setDescription(e.target.value);
-  const handleImageChange = (e) => setImage(e.target.value);
+  const handleImageChange = (e) => setImage(e.target.files);
+
+//  const handleImageChange = (e) => {
+//   const imagesAdded = e.target.files;
+//   const uploadedImages = [];
+
+//   for (let i = 0; i < imagesAdded.length; i++) {
+//     const file = imagesAdded[i];
+//     uploadedImages.push(file);
+      
+//     };
+
+//     setImage(uploadedImages);
+//   };
+
+
   const handleCategoryChange = (e) => setCategory(e.target.value);
 
   useEffect(() => {
@@ -100,8 +115,13 @@ function CreateForm(props) {
           onChange={handleDescriptionChange}
         />
         <br />
-        <label>Image:</label>
-        <input type="file" name="image" onChange={handleImageChange} />
+
+      <label htmlFor="image">Upload Images:</label>
+      <input type="file" id="image" multiple onChange={handleImageChange} />
+
+
+        {/* <label>Image:</label>
+        <input type="file" multiple name="image" onChange={handleImageChange} /> */}
         <br />
         <label htmlFor="select">Category:</label>
         <select id="select" value={category} onChange={handleCategoryChange}>

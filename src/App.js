@@ -13,6 +13,8 @@ import Home from "./pages/Home";
 import Destinations from "./pages/Destinations";
 import PostDetails from "./pages/PostDetails";
 import EditForm from "./pages/EditForm";
+import MyProfile from "./pages/profile/MyProfile";
+import EditProfile from "./pages/profile/EditProfile";
 
 function App() {
   return (
@@ -26,6 +28,10 @@ function App() {
         <Route path="/destinations/create-form" element={<CreateForm />} />
         <Route path="/destinations/:postId" element={<PostDetails />} />
         <Route path="/destinations/edit/:postId" element={<EditForm />} />
+
+        {/* Prvate Profile*/}
+        <Route path="/profile" element={<MyProfile />} />
+        <Route path="/profile/edit-form" element={<EditProfile />} />
 
         {/* Auth Routes */}
         <Route path="/signup" element={<Signup />} />

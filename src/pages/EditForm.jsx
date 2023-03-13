@@ -5,6 +5,7 @@ import {
   getCountriesService,
   getCategoriesService,
   getPostService,
+  updatedPostService,
 } from "../services/post.services";
 
 function EditForm() {
@@ -40,6 +41,10 @@ function EditForm() {
     try {
       const response = await getPostService(params.postId);
       setTitle(response.data.title);
+      setCountry(response.data.country);
+      setDescription(response.data.description);
+      setImage(response.data.image);
+      setCategory(response.data.category);
     } catch (error) {
       navigate("/error");
     }
@@ -55,8 +60,8 @@ function EditForm() {
         image,
         category,
       };
-      await updatedPost(params.postId, updatedPost);
-      navigate(`/destinations/${params.postId}/details`);
+      await updatedPostService(params.postId, updatedPost);
+      navigate(`/destinations/${params.postId}`);
     } catch (error) {
       navigate("/error");
     }

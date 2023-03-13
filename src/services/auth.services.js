@@ -13,4 +13,8 @@ const verifyService = () => {
   return service.get("/auth/verify");
 };
 
-export { signupService, loginService, verifyService };
+const myProfileService = () => {
+  return service.get("/profile")
+}
+
+export { signupService, loginService, verifyService, myProfileService };

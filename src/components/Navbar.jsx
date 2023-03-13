@@ -18,6 +18,7 @@ if(isLoggedIn === true) {
     <div>
       <NavLink to="/">Home</NavLink>
       <NavLink to="/destinations">Destinations</NavLink>
+      <NavLink to="/profile">My profile</NavLink>
       <button onClick={handleLogout}>Logout</button>
 
 

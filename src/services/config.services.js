@@ -2,7 +2,7 @@ import axios from "axios";
 
 //all calls to BE will be from here
 const service = axios.create({
-  baseURL: "http://localhost:5005/api",
+  baseURL: process.env.REACT_APP_SERVER_URL,
 });
 
 //all calls to this service will have the token

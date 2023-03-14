@@ -5,6 +5,7 @@ import {
   deletePostService,
   newCommentService,
   getCommentsService,
+  deleteCommentService,
 } from "../services/post.services";
 
 function PostDetails() {
@@ -12,8 +13,10 @@ function PostDetails() {
 
   const params = useParams();
 
-  const [singlePost, setSinglePost] = useState("");
   const [isFetching, setIsFetching] = useState(true);
+
+  const [singlePost, setSinglePost] = useState("");
+
   const [comment, setComment] = useState("");
   const [postComments, setPostComments] = useState([]);
 
@@ -38,6 +41,32 @@ function PostDetails() {
       navigate("/error");
     }
   };
+
+  const handleEditComment = async (e) => {
+    e.preventDefault();
+    try {
+    } catch (error) {}
+  };
+
+  const deleteComment = (commentId) => {
+    const filteredComments = postComments.filter((eachComment) => {
+      if (eachComment._id === commentId) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+    setPostComments(filteredComments);
+  };
+
+  // const handleDeleteComment = async () => {
+  //   try {
+  //     await deleteCommentService(params.postId);
+  //     navigate("/destinations");
+  //   } catch (error) {
+  //     navigate("/error");
+  //   }
+  // };
 
   useEffect(() => {
     getData();
@@ -98,6 +127,9 @@ function PostDetails() {
               {comment.comment}
               <br />
               by {comment.creator.username}
+              <p>{comment._id}</p>
+              <button onClick={handleEditComment}>Edit</button>
+              <button onClick={() => deleteComment(comment._id)}>Delete</button>
             </p>
           ))}
         </div>

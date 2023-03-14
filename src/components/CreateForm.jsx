@@ -25,7 +25,8 @@ function CreateForm(props) {
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleCountryChange = (e) => setCountry(e.target.value);
   const handleDescriptionChange = (e) => setDescription(e.target.value);
-  const handleImageChange = (e) => setImage(e.target.files);
+
+ const handleImageChange = (e) => setImage(e.target.files);
 
 //  const handleImageChange = (e) => {
 //   const imagesAdded = e.target.files;
@@ -37,8 +38,10 @@ function CreateForm(props) {
       
 //     };
 
-//     setImage(uploadedImages);
+//     setImage([...image, uploadedImages]);
 //   };
+
+
 
 
   const handleCategoryChange = (e) => setCategory(e.target.value);
@@ -116,7 +119,7 @@ function CreateForm(props) {
         />
         <br />
 
-      <label htmlFor="image">Upload Images:</label>
+      <label>Upload Images:</label>
       <input type="file" id="image" multiple onChange={handleImageChange} />
 
 

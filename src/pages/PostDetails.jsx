@@ -4,6 +4,7 @@ import {
   getPostService,
   deletePostService,
   newCommentService,
+  getCommentsService,
 } from "../services/post.services";
 
 function PostDetails() {
@@ -14,6 +15,7 @@ function PostDetails() {
   const [singlePost, setSinglePost] = useState("");
   const [isFetching, setIsFetching] = useState(true);
   const [comment, setComment] = useState("");
+  const [postComments, setPostComments] = useState([]);
 
   const handleDeletePost = async () => {
     try {
@@ -30,7 +32,7 @@ function PostDetails() {
       comment,
     };
     try {
-      const response = await newCommentService(params.postId, newComment);
+      await newCommentService(params.postId, newComment);
       navigate("/destinations");
     } catch (error) {
       navigate("/error");
@@ -44,10 +46,12 @@ function PostDetails() {
   const getData = async () => {
     try {
       const response = await getPostService(params.postId);
+      const comments = await getCommentsService(params.postId);
       // response.data.creator.username;
       //console.log(response.data.creator.username);
       //console.log(response.data.image)
       setSinglePost(response.data);
+      setPostComments(comments.data);
       setIsFetching(false);
 
       // const findComments = await newCommentService();
@@ -89,7 +93,13 @@ function PostDetails() {
             ></textarea>
             <button type="submit">Submit</button>
           </form>
-          <p>{comment}</p>
+          {postComments.map((comment) => (
+            <p key={comment._id}>
+              {comment.comment}
+              <br />
+              by {comment.creator.username}
+            </p>
+          ))}
         </div>
       )}
     </div>

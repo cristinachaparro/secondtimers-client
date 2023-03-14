@@ -28,8 +28,8 @@ const getCategoriesService = () => {
   return service.get("/destinations/categories");
 };
 
-const getCommentsService = () => {
-  return service.get(`/destinations`);
+const getCommentsService = (postId) => {
+  return service.get(`/destinations/${postId}/comment`);
 };
 
 const newCommentService = (postId, newComment) => {

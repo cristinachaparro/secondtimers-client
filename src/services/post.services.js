@@ -28,6 +28,22 @@ const getCategoriesService = () => {
   return service.get("/destinations/categories");
 };
 
+const getCommentsService = () => {
+  return service.get(`/destinations`);
+};
+
+const newCommentService = (postId, newComment) => {
+  return service.post(`/destinations/${postId}/comment`, newComment);
+};
+
+const editCommentService = (commentId, updatedComment) => {
+  return service.patch(`/destinations/${commentId}`, updatedComment);
+};
+
+const deleteCommentService = (commentId) => {
+  return service.delete(`/destinations/${commentId}`);
+};
+
 export {
   newPostService,
   destinationsService,
@@ -36,4 +52,8 @@ export {
   deletePostService,
   getCountriesService,
   getCategoriesService,
+  getCommentsService,
+  newCommentService,
+  editCommentService,
+  deleteCommentService,
 };

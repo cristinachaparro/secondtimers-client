@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { getPostService, deletePostService } from "../services/post.services";
+import {
+  getPostService,
+  deletePostService,
+  newCommentService,
+} from "../services/post.services";
 
 function PostDetails() {
   const navigate = useNavigate();
@@ -9,10 +13,24 @@ function PostDetails() {
 
   const [singlePost, setSinglePost] = useState("");
   const [isFetching, setIsFetching] = useState(true);
+  const [comment, setComment] = useState("");
 
   const handleDeletePost = async () => {
     try {
       await deletePostService(params.postId);
+      navigate("/destinations");
+    } catch (error) {
+      navigate("/error");
+    }
+  };
+
+  const handleComment = async (e) => {
+    e.preventDefault();
+    const newComment = {
+      comment,
+    };
+    try {
+      const response = await newCommentService(params.postId, newComment);
       navigate("/destinations");
     } catch (error) {
       navigate("/error");
@@ -31,11 +49,12 @@ function PostDetails() {
       //console.log(response.data.image)
       setSinglePost(response.data);
       setIsFetching(false);
+
+      // const findComments = await newCommentService();
     } catch (error) {
       navigate("/error");
     }
   };
-  console.log(singlePost.image)
 
   return (
     <div>
@@ -46,12 +65,12 @@ function PostDetails() {
           <h1>Post</h1>
           <h4>{singlePost.title}</h4>
           {singlePost.image.map((eachImage) => {
-        return (
-          <div key={eachImage.image}>
-            <img src={eachImage} alt="" />
-          </div>
-        );
-      })}
+            return (
+              <div key={eachImage.image}>
+                <img src={eachImage} alt="" />
+              </div>
+            );
+          })}
           <p>{singlePost.country}</p>
           <p>{singlePost.description}</p>
           <p>{singlePost.category}</p>
@@ -60,6 +79,17 @@ function PostDetails() {
             <button>Edit</button>
           </Link>
           <button onClick={handleDeletePost}>Delete</button>
+          <br />
+          <form onSubmit={handleComment}>
+            <label htmlFor="comment">Comment:</label>
+            <textarea
+              id="comment"
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+            ></textarea>
+            <button type="submit">Submit</button>
+          </form>
+          <p>{comment}</p>
         </div>
       )}
     </div>

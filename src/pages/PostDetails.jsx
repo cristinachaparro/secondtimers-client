@@ -36,7 +36,9 @@ function PostDetails() {
     };
     try {
       await newCommentService(params.postId, newComment);
+      getData()
       navigate(`/destinations/${params.postId}`);
+      setComment("")
     } catch (error) {
       navigate("/error");
     }
@@ -48,7 +50,15 @@ function PostDetails() {
     } catch (error) {}
   };
 
-  const deleteComment = (commentId) => {
+
+  const handleDeleteComment = async (commentId) => {
+    try {
+      await deleteCommentService(commentId);
+
+      navigate("/destinations");
+    } catch (error) {
+      navigate("/error");
+    }
     const filteredComments = postComments.filter((eachComment) => {
       if (eachComment._id === commentId) {
         return false;
@@ -58,15 +68,6 @@ function PostDetails() {
     });
     setPostComments(filteredComments);
   };
-
-  // const handleDeleteComment = async () => {
-  //   try {
-  //     await deleteCommentService(params.postId);
-  //     navigate("/destinations");
-  //   } catch (error) {
-  //     navigate("/error");
-  //   }
-  // };
 
   useEffect(() => {
     getData();
@@ -131,7 +132,7 @@ function PostDetails() {
               by {comment.creator.username}
               <p>{comment._id}</p>
               <button onClick={handleEditComment}>Edit</button>
-              <button onClick={() => deleteComment(comment._id)}>Delete</button>
+              <button onClick={() => handleDeleteComment(comment._id)}>Delete</button>
             </p>
           ))}
         </div>

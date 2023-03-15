@@ -18,11 +18,11 @@ const myProfileService = () => {
 }
 
 const updatedProfileService = (updatedProfile) => {
-  return service.patch("profile/edit-form", updatedProfile);
+  return service.patch("/profile/edit-form", updatedProfile);
 };
 
 const myFavouritesService = () => {
-  return service.get("/profile")
+  return service.get("/profile/favourites")
 }
 
 

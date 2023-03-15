@@ -37,11 +37,11 @@ const newCommentService = (postId, newComment) => {
 };
 
 const editCommentService = (commentId, updatedComment) => {
-  return service.patch(`/destinations/${commentId}`, updatedComment);
+  return service.patch(`/destinations/comment/${commentId}`, updatedComment);
 };
 
 const deleteCommentService = (commentId) => {
-  return service.delete(`/destinations/${commentId}`);
+  return service.delete(`/destinations/comment/${commentId}`);
 };
 
 export {

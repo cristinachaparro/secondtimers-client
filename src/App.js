@@ -20,7 +20,6 @@ import MyFavourites from "./pages/profile/MyFavourites";
 function App() {
   return (
     <div className="App">
-      <h1>Hola</h1>
       <Navbar />
       <Routes>
         {/* Routes */}

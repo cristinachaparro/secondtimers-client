@@ -1,3 +1,7 @@
-.App {
-  text-align: center;
+/* HOME */
+
+#home {
+  background-color: #b5b7a5;
+  width: 100vw;
+  height: 100vh;
 }

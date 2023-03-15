@@ -107,8 +107,7 @@ function PostDetails() {
         <h3>Loading...</h3>
       ) : (
         <div>
-          <h1>Post</h1>
-          <h4>{singlePost.title}</h4>
+          <h1>{singlePost.title}</h1>
           <img src={imageUrl} alt="img" width={200} />
           {/* {singlePost.image.map((eachImage) => {
             return (

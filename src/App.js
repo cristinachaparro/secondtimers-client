@@ -15,6 +15,7 @@ import PostDetails from "./pages/PostDetails";
 import EditForm from "./pages/EditForm";
 import MyProfile from "./pages/profile/MyProfile";
 import EditProfile from "./pages/profile/EditProfile";
+import MyFavourites from "./pages/profile/MyFavourites";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         {/* Prvate Profile*/}
         <Route path="/profile" element={<MyProfile />} />
         <Route path="/profile/edit-form" element={<EditProfile />} />
+        <Route path="/profile/favourites" element={<MyFavourites />} />
 
         {/* Auth Routes */}
         <Route path="/signup" element={<Signup />} />

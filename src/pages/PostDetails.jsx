@@ -23,7 +23,7 @@ function PostDetails() {
   const handleDeletePost = async () => {
     try {
       await deletePostService(params.postId);
-      navigate("/destinations");
+      navigate(`/destinations/${params.postId}`);
     } catch (error) {
       navigate("/error");
     }
@@ -36,7 +36,7 @@ function PostDetails() {
     };
     try {
       await newCommentService(params.postId, newComment);
-      navigate("/destinations");
+      navigate(`/destinations/${params.postId}`);
     } catch (error) {
       navigate("/error");
     }
@@ -112,6 +112,8 @@ function PostDetails() {
             <button>Edit</button>
           </Link>
           <button onClick={handleDeletePost}>Delete</button>
+          <br />
+          <button>Add to Favourites</button>
           <br />
           <form onSubmit={handleComment}>
             <label htmlFor="comment">Comment:</label>

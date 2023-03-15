@@ -21,5 +21,15 @@ const updatedProfileService = (updatedProfile) => {
   return service.patch("profile/edit-form", updatedProfile);
 };
 
+const myFavouritesService = () => {
+  return service.get("/profile")
+}
 
-export { signupService, loginService, verifyService, myProfileService, updatedProfileService };
+
+export { signupService,
+   loginService,
+   verifyService,
+   myProfileService,
+   updatedProfileService,
+   myFavouritesService
+   };

@@ -21,6 +21,7 @@ function MyProfile() {
     }
   };
 
+  //console.log(singleProfile)
   return (
     <div>
       <h2>My profile</h2>
@@ -28,10 +29,15 @@ function MyProfile() {
       <h4>{singleProfile.username}</h4>
       <h4>{singleProfile.email}</h4>
       <h4>{singleProfile.location}</h4>
-      <h4>{singleProfile.age}</h4>  
+      <h4>{singleProfile.age}</h4> 
+      <h2>My Favs</h2>
 
       <NavLink to="/profile/edit-form">
         <button>Edit</button>
+      </NavLink>
+
+      <NavLink to="/profile/favourites">
+        <button>My Favourites</button>
       </NavLink>
 
     </div>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { addFavouriteService } from "../services/auth.services";
 import {
@@ -8,8 +8,11 @@ import {
   getCommentsService,
   deleteCommentService,
 } from "../services/post.services";
+import { AuthContext } from "../context/auth.context";
 
 function PostDetails() {
+  const { isLoggedIn, authenticateUser, loggedUser } = useContext(AuthContext);
+
   const navigate = useNavigate();
 
   const params = useParams();
@@ -52,12 +55,6 @@ function PostDetails() {
     } catch (error) {
       navigate("/error");
     }
-  };
-
-  const handleEditComment = async (e) => {
-    e.preventDefault();
-    try {
-    } catch (error) {}
   };
 
   const handleDeleteComment = async (commentId) => {
@@ -124,11 +121,15 @@ function PostDetails() {
           <p>{singlePost.description}</p>
           <p>{singlePost.category}</p>
           <p>{singlePost.creator.username}</p>
-          <Link to={`/destinations/edit/${params.postId}`}>
-            <button>Edit</button>
-          </Link>
-          <button onClick={handleDeletePost}>Delete</button>
-          <br />
+          {singlePost.creator._id === loggedUser._id ? (
+            <div>
+              <Link to={`/destinations/edit/${params.postId}`}>
+                <button>Edit</button>
+              </Link>
+              <button onClick={handleDeletePost}>Delete</button>
+              <br />
+            </div>
+          ) : null}
           <button onClick={handleFavourites}>Add to Favourites</button>
           <br />
           <form onSubmit={handleComment}>
@@ -145,10 +146,13 @@ function PostDetails() {
               {comment.comment}
               <br />
               by {comment.creator.username}
-              <button onClick={handleEditComment}>Edit</button>
-              <button onClick={() => handleDeleteComment(comment._id)}>
-                Delete
-              </button>
+              {comment.creator._id === loggedUser._id ? (
+                <div>
+                  <button onClick={() => handleDeleteComment(comment._id)}>
+                    Delete
+                  </button>
+                </div>
+              ) : null}
             </p>
           ))}
         </div>

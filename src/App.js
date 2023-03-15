@@ -30,7 +30,7 @@ function App() {
         <Route path="/destinations/:postId" element={<PostDetails />} />
         <Route path="/destinations/edit/:postId" element={<EditForm />} />
 
-        {/* Prvate Profile*/}
+        {/* Private Profile*/}
         <Route path="/profile" element={<MyProfile />} />
         <Route path="/profile/edit-form" element={<EditProfile />} />
         <Route path="/profile/favourites" element={<MyFavourites />} />

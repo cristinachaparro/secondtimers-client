@@ -27,7 +27,7 @@ function MyProfile() {
   return (
     <div>
       <h2>My profile</h2>
-      <img src={imageUrl} alt="img" width={200} />
+      <img src={singleProfile.profilePicture} alt="img" width={200} />
       <h4>{singleProfile.username}</h4>
       <h4>{singleProfile.email}</h4>
       <h4>{singleProfile.location}</h4>

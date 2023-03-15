@@ -70,7 +70,7 @@ function EditProfile() {
     try {
       const updatedProfile = {
         username,
-        image: imageUrl,
+        profilePicture: imageUrl,
         location,
         age,
       };

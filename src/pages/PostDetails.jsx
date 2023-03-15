@@ -18,8 +18,6 @@ function PostDetails() {
 
   const [singlePost, setSinglePost] = useState("");
 
-  const [favourites, setFavourites] = useState([]);
-
   const [comment, setComment] = useState("");
   const [postComments, setPostComments] = useState([]);
 
@@ -101,6 +99,11 @@ function PostDetails() {
     }
   };
 
+  let imageUrl = "";
+  if (singlePost.image && singlePost.image.length > 0) {
+    imageUrl = singlePost.image[0];
+  }
+
   return (
     <div>
       {isFetching === true ? (
@@ -109,7 +112,7 @@ function PostDetails() {
         <div>
           <h1>Post</h1>
           <h4>{singlePost.title}</h4>
-          <img src={singlePost.image} alt="img" width={200} />
+          <img src={imageUrl} alt="img" width={200} />
           {/* {singlePost.image.map((eachImage) => {
             return (
               <div key={eachImage.image}>

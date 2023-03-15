@@ -23,7 +23,6 @@ function CreateForm(props) {
   const [country, setCountry] = useState("");
   const [countryOptions, setCountryOptions] = useState([]);
   const [description, setDescription] = useState("");
-  const [image, setImage] = useState([]);
   const [category, setCategory] = useState("");
   const [categoryOptions, setCategoryOptions] = useState([]);
 
@@ -72,7 +71,7 @@ function CreateForm(props) {
       title,
       country,
       description,
-      image,
+      image: [imageUrl],
       category,
     };
     try {

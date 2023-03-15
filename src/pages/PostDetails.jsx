@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { addFavouriteService } from "../services/auth.services";
 import {
   getPostService,
   deletePostService,
@@ -17,12 +18,23 @@ function PostDetails() {
 
   const [singlePost, setSinglePost] = useState("");
 
+  const [favourites, setFavourites] = useState([]);
+
   const [comment, setComment] = useState("");
   const [postComments, setPostComments] = useState([]);
 
   const handleDeletePost = async () => {
     try {
       await deletePostService(params.postId);
+      navigate("/destinations/");
+    } catch (error) {
+      navigate("/error");
+    }
+  };
+
+  const handleFavourites = async () => {
+    try {
+      await addFavouriteService(params.postId);
       navigate(`/destinations/${params.postId}`);
     } catch (error) {
       navigate("/error");
@@ -36,9 +48,9 @@ function PostDetails() {
     };
     try {
       await newCommentService(params.postId, newComment);
-      getData()
+      getData();
       navigate(`/destinations/${params.postId}`);
-      setComment("")
+      setComment("");
     } catch (error) {
       navigate("/error");
     }
@@ -50,12 +62,11 @@ function PostDetails() {
     } catch (error) {}
   };
 
-
   const handleDeleteComment = async (commentId) => {
     try {
       await deleteCommentService(commentId);
-
-      navigate("/destinations");
+      getData();
+      navigate(`/destinations/${params.postId}`);
     } catch (error) {
       navigate("/error");
     }
@@ -98,13 +109,14 @@ function PostDetails() {
         <div>
           <h1>Post</h1>
           <h4>{singlePost.title}</h4>
-          {singlePost.image.map((eachImage) => {
+          <img src={singlePost.image} alt="img" width={200} />
+          {/* {singlePost.image.map((eachImage) => {
             return (
               <div key={eachImage.image}>
                 <img src={eachImage} alt="" />
               </div>
             );
-          })}
+          })} */}
           <p>{singlePost.country}</p>
           <p>{singlePost.description}</p>
           <p>{singlePost.category}</p>
@@ -114,7 +126,7 @@ function PostDetails() {
           </Link>
           <button onClick={handleDeletePost}>Delete</button>
           <br />
-          <button>Add to Favourites</button>
+          <button onClick={handleFavourites}>Add to Favourites</button>
           <br />
           <form onSubmit={handleComment}>
             <label htmlFor="comment">Comment:</label>
@@ -130,9 +142,10 @@ function PostDetails() {
               {comment.comment}
               <br />
               by {comment.creator.username}
-              <p>{comment._id}</p>
               <button onClick={handleEditComment}>Edit</button>
-              <button onClick={() => handleDeleteComment(comment._id)}>Delete</button>
+              <button onClick={() => handleDeleteComment(comment._id)}>
+                Delete
+              </button>
             </p>
           ))}
         </div>

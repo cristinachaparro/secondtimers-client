@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { uploadImageService } from "../services/upload.services";
+
 import {
   getCategoriesService,
   getCountriesService,
@@ -14,6 +16,9 @@ function CreateForm(props) {
 
   const [errorMessage, setErrorMessage] = useState("");
 
+  const [imageUrl, setImageUrl] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
+
   const [title, setTitle] = useState("");
   const [country, setCountry] = useState("");
   const [countryOptions, setCountryOptions] = useState([]);
@@ -26,23 +31,18 @@ function CreateForm(props) {
   const handleCountryChange = (e) => setCountry(e.target.value);
   const handleDescriptionChange = (e) => setDescription(e.target.value);
 
- const handleImageChange = (e) => setImage(e.target.files);
+  //  const handleImageChange = (e) => {
+  //   const imagesAdded = e.target.files;
+  //   const uploadedImages = [];
 
-//  const handleImageChange = (e) => {
-//   const imagesAdded = e.target.files;
-//   const uploadedImages = [];
+  //   for (let i = 0; i < imagesAdded.length; i++) {
+  //     const file = imagesAdded[i];
+  //     uploadedImages.push(file);
 
-//   for (let i = 0; i < imagesAdded.length; i++) {
-//     const file = imagesAdded[i];
-//     uploadedImages.push(file);
-      
-//     };
+  //     };
 
-//     setImage([...image, uploadedImages]);
-//   };
-
-
-
+  //     setImage([...image, uploadedImages]);
+  //   };
 
   const handleCategoryChange = (e) => setCategory(e.target.value);
 
@@ -88,6 +88,34 @@ function CreateForm(props) {
     }
   };
 
+  const handleFileUpload = async (event) => {
+    // console.log("The file to be uploaded is: ", e.target.files[0]);
+
+    if (!event.target.files[0]) {
+      // to prevent accidentally clicking the choose file button and not selecting a file
+      return;
+    }
+
+    setIsUploading(true); // to start the loading animation
+
+    const uploadData = new FormData(); // images and other files need to be sent to the backend in a FormData
+    uploadData.append("image", event.target.files[0]);
+    //                   |
+    //     this name needs to match the name used in the middleware => uploader.single("image")
+
+    try {
+      const response = await uploadImageService(uploadData);
+
+      setImageUrl(response.data.imageUrl);
+      //                          |
+      //     this is how the backend sends the image to the frontend => res.json({ imageUrl: req.file.path });
+
+      setIsUploading(false); // to stop the loading animation
+    } catch (error) {
+      navigate("/error");
+    }
+  };
+
   return (
     <div>
       <h1>Create form</h1>
@@ -119,10 +147,19 @@ function CreateForm(props) {
         />
         <br />
 
-      <label>Upload Images:</label>
-      <input type="file" id="image" multiple onChange={handleImageChange} />
-
-
+        <label>Image: </label>
+        <input
+          type="file"
+          name="image"
+          onChange={handleFileUpload}
+          disabled={isUploading}
+        />
+        {isUploading ? <h3>Uploading image...</h3> : null}
+        {imageUrl ? (
+          <div>
+            <img src={imageUrl} alt="img" width={200} />
+          </div>
+        ) : null}
         {/* <label>Image:</label>
         <input type="file" multiple name="image" onChange={handleImageChange} /> */}
         <br />

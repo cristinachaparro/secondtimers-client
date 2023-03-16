@@ -102,67 +102,89 @@ function PostDetails() {
   }
 
   return (
-    <div>
+    <div className="post">
       {isFetching === true ? (
         <h3>Loading...</h3>
       ) : (
-        <div className="post">
-          <h1>{singlePost.title}</h1>
-          <img src={imageUrl} alt={singlePost.title} />
-          <p className="post-details" id="country">
-            <img
-              className="location-icon"
-              src="LogoDarkPoint.png"
-              alt="point icon"
-            />{" "}
-            {singlePost.country}
-          </p>
-          <p className="post-details">{singlePost.description}</p>
-          <p className="post-details-small">{singlePost.category}</p>
-          <p className="post-details-small">by {singlePost.creator.username}</p>
-          {singlePost.creator._id === loggedUser._id ? (
-            <div>
-              <Link to={`/destinations/edit/${params.postId}`}>
-                <button className="standard-btn-post">Edit</button>
-              </Link>
-              <button className="standard-btn-post" onClick={handleDeletePost}>
-                Delete
-              </button>
-              <br />
+        <div>
+          <div id="post-info">
+            <h1>{singlePost.title}</h1>
+            <img className="post-img" src={imageUrl} alt={singlePost.title} />
+            <div className="post-details" id="country">
+              <img
+                className="location-icon"
+                src="https://res.cloudinary.com/dn6kyb2kf/image/upload/v1678976696/secondtimers/icons/LogoDarkPoint_vq2ghz.png"
+                alt="point icon"
+              />
+              <span>{singlePost.country}</span>
             </div>
-          ) : null}
-          <button className="reset-btn" onClick={handleFavourites}>
-            <img src="LogoHeartOff.png" alt="heart" />
-          </button>
-          <br />
-          <form onSubmit={handleComment}>
-            <label htmlFor="comment">Comment:</label>
-            <textarea
-              id="comment"
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-            ></textarea>
-            <button className="standard-btn-post" type="submit">
-              Submit
-            </button>
-          </form>
-          {postComments.map((comment) => (
-            <p key={comment._id}>
-              {comment.comment}
-              <br />
-              by {comment.creator.username}
-              {comment.creator._id === loggedUser._id ? (
-                <div>
-                  <button
-                    className="standard-btn-post"
-                    onClick={() => handleDeleteComment(comment._id)}
-                  >
-                    Delete
-                  </button>
-                </div>
-              ) : null}
+            <p className="post-details">{singlePost.description}</p>
+            <p className="post-details-small">{singlePost.category}</p>
+            <p className="post-details-small">
+              by {singlePost.creator.username}
             </p>
-          ))}
+            <button className="reset-btn" onClick={handleFavourites}>
+              <img
+                className="icon"
+                src="https://res.cloudinary.com/dn6kyb2kf/image/upload/v1678976697/secondtimers/icons/LogoHeartOn_gxiqcn.png"
+                alt="heart"
+              />
+            </button>
+            {singlePost.creator._id === loggedUser._id ? (
+              <div>
+                <Link to={`/destinations/edit/${params.postId}`}>
+                  <button className="standard-btn-post">Edit</button>
+                </Link>
+                <button
+                  className="standard-btn-post"
+                  onClick={handleDeletePost}
+                >
+                  Delete
+                </button>
+                <br />
+              </div>
+            ) : null}
+          </div>
+          <div id="comments-container">
+            <div id="comment-creation">
+              <form onSubmit={handleComment}>
+                <label htmlFor="comment">Comment:</label>
+                <br />
+                <textarea
+                  width="300px"
+                  height="150px"
+                  id="comment"
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
+                ></textarea>
+                <br />
+                <button className="standard-btn-post" type="submit">
+                  Submit
+                </button>
+              </form>
+            </div>
+            {postComments.map((comment) => (
+              <div key={comment._id} id="comment-section">
+                <p>
+                  {comment.comment}
+                  <br />
+                  by {comment.creator.username}
+                  <br />
+                  {comment.creator._id === loggedUser._id ? (
+                    <span>
+                      <button
+                        className="standard-btn-post"
+                        onClick={() => handleDeleteComment(comment._id)}
+                      >
+                        Delete
+                      </button>
+                    </span>
+                  ) : null}
+                </p>
+                <hr />
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>

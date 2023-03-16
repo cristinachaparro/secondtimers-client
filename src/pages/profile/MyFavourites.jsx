@@ -55,7 +55,7 @@ function MyFavourites() {
       {isFetching === true ? (
         <h3>Loading...</h3>
       ) : (
-        <div>
+        <div className="favs-container">
           <h2>My favourites</h2>
           {favourites.favouritePosts.map((each) => {
             return (

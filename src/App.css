@@ -9,6 +9,7 @@ font-family: 'Philosopher', sans-serif; */
 
 * {
   font-family: "Darker Grotesque", sans-serif;
+  box-sizing: border-box;
 }
 
 /* NAVBAR */
@@ -327,14 +328,19 @@ h2 {
   align-items: center;
 }
 
-#favourites-list h2 {
+.favs-container {
+  width: 100%;
+  padding: 0 20px;
+}
+
+.favs-container h2 {
   text-align: center;
 }
 
 #each-fav {
   display: flex;
-  width: 100vw;
-  justify-content: space-around;
+  width: 100%;
+  justify-content: space-between;
   align-items: center;
 }
 

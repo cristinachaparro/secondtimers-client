@@ -45,8 +45,8 @@ const deleteCommentService = (commentId) => {
 };
 
 const authorProfileService = (userId) => {
-  return service.get(`/profile/${userId}`);
-}
+  return service.get(`/profile/user/${userId}`);
+};
 
 export {
   newPostService,
@@ -60,5 +60,5 @@ export {
   newCommentService,
   editCommentService,
   deleteCommentService,
-  authorProfileService
+  authorProfileService,
 };

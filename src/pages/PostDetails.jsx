@@ -144,7 +144,11 @@ function PostDetails() {
               </p>
             </Link>
 
-            <button className="reset-btn" onClick={handleFavourites}>
+            <button
+              className="reset-btn"
+              id="post-fav"
+              onClick={handleFavourites}
+            >
               {isPostFavourite ? (
                 <img
                   className="icon"

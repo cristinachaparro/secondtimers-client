@@ -1,6 +1,9 @@
 import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { addFavouriteService } from "../services/auth.services";
+import {
+  addFavouriteService,
+  myFavouritesService,
+} from "../services/auth.services";
 import {
   getPostService,
   deletePostService,
@@ -24,12 +27,14 @@ function PostDetails() {
 
   const [comment, setComment] = useState("");
   const [postComments, setPostComments] = useState([]);
+  const [userFavourites, setUserFavourites] = useState([]);
 
   // FAVOURITES
 
   const handleFavourites = async () => {
     try {
       await addFavouriteService(params.postId);
+      setUserFavourites([...userFavourites, { id: params.postId }]);
       navigate(`/destinations/${params.postId}`);
     } catch (error) {
       navigate("/error");
@@ -92,9 +97,11 @@ function PostDetails() {
     try {
       const response = await getPostService(params.postId);
       const comments = await getCommentsService(params.postId);
+      const favourites = await myFavouritesService();
 
       setSinglePost(response.data);
       setPostComments(comments.data);
+      setUserFavourites(favourites.data.favouritePosts);
       setIsFetching(false);
 
       // const findComments = await newCommentService();
@@ -107,6 +114,10 @@ function PostDetails() {
   if (singlePost.image && singlePost.image.length > 0) {
     imageUrl = singlePost.image[0];
   }
+
+  const isPostFavourite =
+    userFavourites.findIndex((favourite) => favourite.id === params.postId) !==
+    -1;
 
   return (
     <div className="post">
@@ -134,11 +145,20 @@ function PostDetails() {
             </Link>
 
             <button className="reset-btn" onClick={handleFavourites}>
-              <img
-                className="icon"
-                src="https://res.cloudinary.com/dn6kyb2kf/image/upload/v1678976697/secondtimers/icons/LogoHeartOn_gxiqcn.png"
-                alt="heart"
-              />
+              {isPostFavourite ? (
+                <img
+                  className="icon"
+                  src="https://res.cloudinary.com/dn6kyb2kf/image/upload/v1678976697/secondtimers/icons/LogoHeartOn_gxiqcn.png"
+                  alt="heart"
+                />
+              ) : (
+                <img
+                  className="icon"
+                  style={{ filter: "invert(1)" }}
+                  src="https://res.cloudinary.com/dn6kyb2kf/image/upload/v1678976697/secondtimers/icons/LogoHeartOff_wtis63.png"
+                  alt="heart"
+                />
+              )}
             </button>
             {singlePost.creator._id === loggedUser._id ? (
               <div>

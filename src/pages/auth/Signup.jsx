@@ -37,10 +37,10 @@ function Signup() {
   };
 
   return (
-    <div>
+    <div className="basic-form-container">
       <h1>Sign Up</h1>
 
-      <form onSubmit={handleSignup}>
+      <form className="form" onSubmit={handleSignup}>
         <label>Username:</label>
         <input
           type="username"
@@ -48,7 +48,6 @@ function Signup() {
           value={username}
           onChange={handleUsernameChange}
         />
-        <br />
         <label>Email:</label>
         <input
           type="email"
@@ -56,7 +55,6 @@ function Signup() {
           value={email}
           onChange={handleEmailChange}
         />
-        <br />
         <label>Password:</label>
         <input
           type="password"
@@ -67,7 +65,9 @@ function Signup() {
         <br />
         {errorMessage !== "" ? <p>{errorMessage}</p> : null}
         <br />
-        <button type="submit">Signup</button>
+        <button className="standard-btn-post" type="submit">
+          Signup
+        </button>
       </form>
     </div>
   );

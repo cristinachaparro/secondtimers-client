@@ -82,9 +82,9 @@ function EditProfile() {
   };
 
   return (
-    <div>
+    <div className="basic-form-container">
       <h1>Edit your profile:</h1>
-      <form onSubmit={handleProfile}>
+      <form className="form" onSubmit={handleProfile}>
         <label>Username:</label>
         <input
           type="text"
@@ -92,20 +92,19 @@ function EditProfile() {
           value={username}
           onChange={handleUsernameChange}
         />
-        <br />
         <input
           type="file"
           name="image"
           onChange={handleFileUpload}
           disabled={isUploading}
         />
+        <br />
         {isUploading ? <h3>Uploading image...</h3> : null}
         {imageUrl ? (
           <div>
             <img src={imageUrl} alt="img" width={200} />
           </div>
         ) : null}
-        <br />
         <label>Age:</label>
         <input
           type="number"
@@ -113,7 +112,6 @@ function EditProfile() {
           value={age}
           onChange={handleAgeChange}
         />
-        <br />
         <label>Location:</label>
         <input
           type="text"
@@ -121,9 +119,10 @@ function EditProfile() {
           value={location}
           onChange={handleLocationChange}
         />
-
         <br />
-        <button type="submit">Upload</button>
+        <button className="standard-btn-post" type="submit">
+          Upload
+        </button>
         {errorMessage !== "" ? <p>{errorMessage}</p> : null}
       </form>
     </div>

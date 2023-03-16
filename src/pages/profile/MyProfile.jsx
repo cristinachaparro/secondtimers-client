@@ -25,21 +25,27 @@ function MyProfile() {
   };
 
   return (
-    <div>
-      <h2>My profile</h2>
-      <img src={singleProfile.profilePicture} alt="img" width={200} />
-      <h4>{singleProfile.username}</h4>
+    <div id="profile">
+      <h1>My profile</h1>
+      <img id="profile-img" src={singleProfile.profilePicture} alt="img" />
+      <h2>{singleProfile.username}</h2>
       <h4>{singleProfile.email}</h4>
-      <h4>{singleProfile.location}</h4>
+      <h4>
+        <img
+          className="location-icon"
+          src="https://res.cloudinary.com/dn6kyb2kf/image/upload/v1678976696/secondtimers/icons/LogoDarkPoint_vq2ghz.png"
+          alt="pin icon"
+        />
+        {singleProfile.location}
+      </h4>
       <h4>{singleProfile.age}</h4>
-      <h2>My Favs</h2>
-
-      <NavLink to="/profile/edit-form">
-        <button>Edit</button>
-      </NavLink>
 
       <NavLink to="/profile/favourites">
-        <button>My Favourites</button>
+        <button id="fav-btn">Favourites</button>
+      </NavLink>
+
+      <NavLink to="/profile/edit-form">
+        <button className="standard-btn">Edit Profile</button>
       </NavLink>
     </div>
   );

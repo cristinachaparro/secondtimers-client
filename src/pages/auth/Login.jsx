@@ -6,8 +6,7 @@ import { loginService } from "../../services/auth.services";
 import { AuthContext } from "../../context/auth.context";
 
 function Login() {
-
-  const { authenticateUser } = useContext(AuthContext)
+  const { authenticateUser } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -28,9 +27,8 @@ function Login() {
     try {
       const response = await loginService(userCredentials);
       localStorage.setItem("authToken", response.data.authToken);
-      authenticateUser()
-      navigate("/destinations")
-
+      authenticateUser();
+      navigate("/destinations");
     } catch (error) {
       if (error.response.status === 400) {
         setErrorMessage(error.response.data.errorMessage);
@@ -41,10 +39,10 @@ function Login() {
   };
 
   return (
-    <div>
+    <div className="basic-form-container">
       <h1>Log In</h1>
 
-      <form onSubmit={handleLogin}>
+      <form className="form" onSubmit={handleLogin}>
         <label>Email:</label>
         <input
           type="email"
@@ -52,7 +50,6 @@ function Login() {
           value={email}
           onChange={handleEmailChange}
         />
-        <br />
         <label>Password:</label>
         <input
           type="password"
@@ -60,10 +57,11 @@ function Login() {
           value={password}
           onChange={handlePasswordChange}
         />
-        <br />
         {errorMessage !== "" ? <p>{errorMessage}</p> : null}
         <br />
-        <button type="submit">Login</button>
+        <button className="standard-btn-post" type="submit">
+          Login
+        </button>
       </form>
     </div>
   );

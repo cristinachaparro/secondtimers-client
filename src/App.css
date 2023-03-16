@@ -48,8 +48,7 @@ font-family: 'Philosopher', sans-serif; */
   height: calc(100vh - 100px);
   display: flex;
   flex-direction: column;
-  align-content: center;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
 }
 
@@ -64,17 +63,44 @@ font-family: 'Philosopher', sans-serif; */
   border: 1px solid #5d5f48;
   box-shadow: 5px 5px 10px grey;
   border-radius: 10px;
-  border-spacing: 0;
   font-family: "Philosopher", sans-serif;
   font-size: 20px;
   font-weight: normal;
   line-height: 1.42rem;
-  list-style: none outside none;
   margin: 30px;
   padding: 10px;
-  text-align: left;
-  text-decoration: none;
-  text-indent: 0;
+}
+
+/* SIGN UP */
+#sign-up h1 {
+  margin-top: 0;
+  padding: 20px;
+  font-family: "Philosopher", sans-serif;
+  color: #7a7c67;
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form label {
+  font-size: 1.5em;
+  margin: 8px 0 4px 0;
+}
+
+/* CREATION FORM */
+.basic-form-container {
+  background-color: #e2e2da;
+  width: 100vw;
+  height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* DESTINATIONS */
@@ -125,6 +151,7 @@ h1 {
 
 .location-icon {
   width: 10px;
+  margin-right: 4px;
 }
 
 .location-name {
@@ -136,6 +163,7 @@ h1 {
 /* POST DETAILS */
 .post {
   background-color: #e2e2da;
+  min-height: calc(100vh - 100px);
 }
 
 .post-img {
@@ -219,4 +247,80 @@ h1 {
 textarea {
   width: 300px;
   height: auto;
+}
+
+/* PROFILE */
+#profile {
+  background-color: #e2e2da;
+  min-height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+#profile h1 {
+  margin: 20px 0;
+}
+
+h2 {
+  color: #7a7c67;
+  font-size: 2em;
+  font-weight: 600;
+  font-family: "Philosopher", sans-serif;
+}
+
+#profile-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  box-shadow: 5px 5px 10px grey;
+}
+
+#profile h4 {
+  margin: 4px;
+  font-size: 1.5em;
+  font-weight: 400;
+}
+
+#fav-btn {
+  background: #5d5f48;
+  color: #e2e2da;
+  border: 1px solid #5d5f48;
+  box-shadow: 5px 5px 10px grey;
+  border-radius: 10px;
+  font-family: "Philosopher", sans-serif;
+  font-size: 25px;
+  line-height: 1.42rem;
+  margin: 10px;
+  padding: 10px;
+  width: 135px;
+}
+
+/* FAVOURITES */
+#favourites-list {
+  background-color: #e2e2da;
+  min-height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+#favourites-list h2 {
+  text-align: center;
+}
+
+#each-fav {
+  display: flex;
+  width: 100vw;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#post-title {
+  font-size: 1.5em;
+  text-decoration: none;
+  color: #7a7c67;
 }

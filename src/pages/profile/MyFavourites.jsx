@@ -51,7 +51,7 @@ function MyFavourites() {
   };
 
   return (
-    <div>
+    <div id="favourites-list">
       {isFetching === true ? (
         <h3>Loading...</h3>
       ) : (
@@ -59,9 +59,14 @@ function MyFavourites() {
           <h2>My favourites</h2>
           {favourites.favouritePosts.map((each) => {
             return (
-              <div>
-                <NavLink to={`/destinations/${each._id}`}>{each.title}</NavLink>
-                <button onClick={() => handleDeleteFavourite(each._id)}>
+              <div id="each-fav" key={each._id}>
+                <NavLink to={`/destinations/${each._id}`}>
+                  <span id="post-title">{each.title}</span>
+                </NavLink>
+                <button
+                  className="standard-btn-post"
+                  onClick={() => handleDeleteFavourite(each._id)}
+                >
                   Delete
                 </button>
               </div>

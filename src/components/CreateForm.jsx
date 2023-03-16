@@ -116,9 +116,9 @@ function CreateForm(props) {
   };
 
   return (
-    <div>
+    <div className="basic-form-container">
       <h1>Create form</h1>
-      <form onSubmit={handlePost}>
+      <form className="form" onSubmit={handlePost}>
         <label>Title:</label>
         <input
           type="text"
@@ -126,7 +126,6 @@ function CreateForm(props) {
           value={title}
           onChange={handleTitleChange}
         />
-        <br />
         <label htmlFor="select">Country:</label>
         <select id="select" value={country} onChange={handleCountryChange}>
           <option value="">Select a country</option>
@@ -136,7 +135,6 @@ function CreateForm(props) {
             </option>
           ))}
         </select>
-        <br />
         <label>Description:</label>
         <input
           type="text"
@@ -144,8 +142,6 @@ function CreateForm(props) {
           value={description}
           onChange={handleDescriptionChange}
         />
-        <br />
-
         <label>Image: </label>
         <input
           type="file"
@@ -161,7 +157,6 @@ function CreateForm(props) {
         ) : null}
         {/* <label>Image:</label>
         <input type="file" multiple name="image" onChange={handleImageChange} /> */}
-        <br />
         <label htmlFor="select">Category:</label>
         <select id="select" value={category} onChange={handleCategoryChange}>
           <option value="">Select a category:</option>
@@ -172,7 +167,9 @@ function CreateForm(props) {
           ))}
         </select>
         <br />
-        <button type="submit">Upload</button>
+        <button className="standard-btn-post" type="submit">
+          Upload
+        </button>
         {errorMessage !== "" ? <p>{errorMessage}</p> : null}
       </form>
     </div>

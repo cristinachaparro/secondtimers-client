@@ -44,6 +44,10 @@ const deleteCommentService = (commentId) => {
   return service.delete(`/destinations/comment/${commentId}`);
 };
 
+const authorProfileService = (userId) => {
+  return service.get(`/profile/${userId}`);
+}
+
 export {
   newPostService,
   destinationsService,
@@ -56,4 +60,5 @@ export {
   newCommentService,
   editCommentService,
   deleteCommentService,
+  authorProfileService
 };

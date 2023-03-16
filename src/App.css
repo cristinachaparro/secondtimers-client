@@ -39,6 +39,11 @@ font-family: 'Philosopher', sans-serif; */
   padding: 0;
   text-decoration: none;
   text-indent: 0;
+  margin: 15px;
+}
+
+.reset-btn:active {
+  transform: scale(1.5);
 }
 
 /* HOME */
@@ -276,6 +281,7 @@ h2 {
   height: 200px;
   border-radius: 100px;
   box-shadow: 5px 5px 10px grey;
+  object-fit: cover;
 }
 
 #profile h4 {

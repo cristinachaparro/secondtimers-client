@@ -8,6 +8,7 @@ import {
   getCommentsService,
   deleteCommentService,
 } from "../services/post.services";
+
 import { AuthContext } from "../context/auth.context";
 
 function PostDetails() {
@@ -24,6 +25,23 @@ function PostDetails() {
   const [comment, setComment] = useState("");
   const [postComments, setPostComments] = useState([]);
 
+  // FAVOURITES
+
+
+  const handleFavourites = async () => {
+    try {
+      await addFavouriteService(params.postId);
+      navigate(`/destinations/${params.postId}`);
+    } catch (error) {
+      navigate("/error");
+    }
+    
+    
+  };
+
+
+  // POSTS
+
   const handleDeletePost = async () => {
     try {
       await deletePostService(params.postId);
@@ -33,14 +51,7 @@ function PostDetails() {
     }
   };
 
-  const handleFavourites = async () => {
-    try {
-      await addFavouriteService(params.postId);
-      navigate(`/destinations/${params.postId}`);
-    } catch (error) {
-      navigate("/error");
-    }
-  };
+// COMMENTS
 
   const handleComment = async (e) => {
     e.preventDefault();
@@ -75,6 +86,8 @@ function PostDetails() {
     setPostComments(filteredComments);
   };
 
+// GET DATA
+
   useEffect(() => {
     getData();
   }, []);
@@ -83,9 +96,7 @@ function PostDetails() {
     try {
       const response = await getPostService(params.postId);
       const comments = await getCommentsService(params.postId);
-      // response.data.creator.username;
-      //console.log(response.data.creator.username);
-      //console.log(response.data.image)
+
       setSinglePost(response.data);
       setPostComments(comments.data);
       setIsFetching(false);
@@ -120,15 +131,19 @@ function PostDetails() {
             </div>
             <p className="post-details">{singlePost.description}</p>
             <p className="post-details-small">{singlePost.category}</p>
+            <Link to={`/profile/${singlePost.creator._id}`}>
             <p className="post-details-small">
               by {singlePost.creator.username}
             </p>
+            </Link>
+            
             <button className="reset-btn" onClick={handleFavourites}>
               <img
                 className="icon"
                 src="https://res.cloudinary.com/dn6kyb2kf/image/upload/v1678976697/secondtimers/icons/LogoHeartOn_gxiqcn.png"
                 alt="heart"
               />
+            
             </button>
             {singlePost.creator._id === loggedUser._id ? (
               <div>
@@ -168,7 +183,9 @@ function PostDetails() {
                 <p>
                   {comment.comment}
                   <br />
+                  <Link to={`/profile/${comment.creator._id}`}>
                   by {comment.creator.username}
+                  </Link>
                   <br />
                   {comment.creator._id === loggedUser._id ? (
                     <span>

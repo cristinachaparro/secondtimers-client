@@ -16,6 +16,7 @@ import EditForm from "./pages/EditForm";
 import MyProfile from "./pages/profile/MyProfile";
 import EditProfile from "./pages/profile/EditProfile";
 import MyFavourites from "./pages/profile/MyFavourites";
+import AuthorProfiles from "./pages/AuthorProfiles";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path="/profile" element={<MyProfile />} />
         <Route path="/profile/edit-form" element={<EditProfile />} />
         <Route path="/profile/favourites" element={<MyFavourites />} />
+        <Route path="/profile/:userId" element={<AuthorProfiles />} />
 
         {/* Auth Routes */}
         <Route path="/signup" element={<Signup />} />

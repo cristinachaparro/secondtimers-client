@@ -2,8 +2,11 @@ import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { destinationsService } from "../services/post.services";
 
+
 function Destinations() {
   const navigate = useNavigate();
+
+
 
   const [allPosts, setAllPosts] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
@@ -30,6 +33,8 @@ function Destinations() {
   return (
     <div id="posts-list">
       <h1>Destinations</h1>
+
+      
       <Link to={"/destinations/create-form"}>
         <button className="standard-btn">Create</button>
       </Link>

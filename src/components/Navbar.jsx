@@ -14,18 +14,36 @@ function Navbar() {
 
   if (isLoggedIn === true) {
     return (
-      <div>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/destinations">Destinations</NavLink>
-        <NavLink to="/profile">My profile</NavLink>
-        <button onClick={handleLogout}>Logout</button>
+      <div id="navbar">
+        <NavLink to="/">
+          <img className="icon" src="LogoHouse.png" alt="Home icon" />
+        </NavLink>
+        <img
+          className="icon"
+          id="nav-logo"
+          src="LogoNav.png"
+          alt="secondtimers' logo"
+        />
+        <NavLink to="/destinations">
+          <img className="icon" src="LogoPlane.png" alt="destinations icon" />
+        </NavLink>
+        <NavLink to="/profile">
+          <img className="icon" src="LogoProfile.png" alt="profile icon" />
+        </NavLink>
+        <button className="reset-btn" onClick={handleLogout}>
+          <img className="icon" src="LogoutLogo.png" alt="logout icon" />
+        </button>
       </div>
     );
   } else {
     return (
-      <div>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/destinations">Destinations</NavLink>
+      <div id="navbar">
+        <NavLink to="/">
+          <img className="icon" src="LogoHouse.png" alt="Home icon" />
+        </NavLink>
+        <NavLink to="/destinations">
+          <img className="icon" src="LogoPlane.png" alt="destinations icon" />
+        </NavLink>
 
         <NavLink to="/signup">Sign up</NavLink>
         <NavLink to="/login">Log in</NavLink>

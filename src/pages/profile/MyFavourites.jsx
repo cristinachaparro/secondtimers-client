@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, NavLink } from "react-router-dom";
 import {
   deleteFavouriteService,
   myFavouritesService,
@@ -60,7 +60,7 @@ function MyFavourites() {
           {favourites.favouritePosts.map((each) => {
             return (
               <div>
-                <h4>{each.title}</h4>
+                <NavLink to={`/destinations/${each._id}`}>{each.title}</NavLink>
                 <button onClick={() => handleDeleteFavourite(each._id)}>
                   Delete
                 </button>

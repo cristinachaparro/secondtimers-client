@@ -1,7 +1,179 @@
-/* HOME */
+@import url("https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300;400;500;600;700;800;900&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+/* font-family: 'Darker Grotesque', sans-serif;
+font-family: 'Philosopher', sans-serif; */
+/* #e2e2da
+#5d5f48
+#7a7c67
+#979986
+#b5b7a5 */
 
+* {
+  font-family: "Darker Grotesque", sans-serif;
+}
+
+/* NAVBAR */
+#navbar {
+  background-color: #5d5f48;
+  height: 100px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#nav-logo {
+  width: 180px;
+}
+
+.icon {
+  width: 25px;
+}
+
+.reset-btn {
+  background: none repeat scroll 0 0 transparent;
+  border: none;
+  border-spacing: 0;
+  background-color: transparent;
+  font-size: 16px;
+  list-style: none outside none;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  text-indent: 0;
+}
+
+/* HOME */
 #home {
-  background-color: #b5b7a5;
+  background-color: #e2e2da;
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#home img {
+  width: 80vw;
+  display: flex;
+}
+
+.standard-btn {
+  background: #5d5f48;
+  color: #e2e2da;
+  border: 1px solid #5d5f48;
+  box-shadow: 5px 5px 10px grey;
+  border-radius: 10px;
+  border-spacing: 0;
+  font-family: "Philosopher", sans-serif;
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 1.42rem;
+  list-style: none outside none;
+  margin: 30px;
+  padding: 10px;
+  text-align: left;
+  text-decoration: none;
+  text-indent: 0;
+}
+
+/* DESTINATIONS */
+h1 {
+  margin-top: 20px;
+  font-family: "Philosopher", sans-serif;
+  color: #7a7c67;
+}
+
+.destinations-img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+#posts-list {
+  background-color: #e2e2da;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+
+.post-container {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+#title-container {
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+.destinations-title {
+  color: #5d5f48;
+  font-family: "Philosopher", sans-serif;
+  text-decoration: none;
+  font-size: 1.5em;
+  margin: 30px 0 20px 0;
+}
+
+.destinations-title:visited {
+  color: #979986;
+}
+
+.location-icon {
+  width: 10px;
+}
+
+.location-name {
+  color: #979986;
+  font-size: 1em;
+  margin: 4px 0px 10px 0px;
+}
+
+/* POST DETAILS */
+.post {
+  background-color: #e2e2da;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.post img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+#country {
+  color: #979986;
+}
+
+.post-details {
+  font-size: 1.5em;
+  margin: 8px;
+}
+
+.post-details-small {
+  font-size: 1.4em;
+  color: #979986;
+  margin: 4px;
+}
+
+.standard-btn-post {
+  background: #5d5f48;
+  color: #e2e2da;
+  border: 1px solid #5d5f48;
+  box-shadow: 5px 5px 10px grey;
+  border-radius: 10px;
+  font-family: "Philosopher", sans-serif;
+  font-size: 18px;
+  line-height: 1.42rem;
+  list-style: none outside none;
+  margin: 5px;
+  padding: 7px;
+  text-decoration: none;
+  width: 70px;
 }

@@ -28,15 +28,35 @@ function Destinations() {
   }
 
   return (
-    <div>
+    <div id="posts-list">
       <h1>Destinations</h1>
-      <Link to={"/destinations/create-form"}>Create</Link>
+      <Link to={"/destinations/create-form"}>
+        <button className="standard-btn">Create</button>
+      </Link>
       {allPosts.map((eachPost) => {
         return (
-          <div key={eachPost._id}>
-            <p>
-              <Link to={`/destinations/${eachPost._id}`}>{eachPost.title}</Link>
+          <div className="post-container" key={eachPost._id}>
+            <p id="title-container">
+              <Link
+                className="destinations-title"
+                to={`/destinations/${eachPost._id}`}
+              >
+                {eachPost.title}
+              </Link>
             </p>
+            <p className="location-name">
+              <img
+                className="location-icon"
+                src="LogoDarkPoint.png"
+                alt="point icon"
+              />{" "}
+              {eachPost.country}
+            </p>
+            <img
+              className="destinations-img"
+              src={eachPost.image}
+              alt={eachPost.title}
+            />
           </div>
         );
       })}

@@ -106,30 +106,34 @@ function PostDetails() {
       {isFetching === true ? (
         <h3>Loading...</h3>
       ) : (
-        <div>
+        <div className="post">
           <h1>{singlePost.title}</h1>
-          <img src={imageUrl} alt="img" width={200} />
-          {/* {singlePost.image.map((eachImage) => {
-            return (
-              <div key={eachImage.image}>
-                <img src={eachImage} alt="" />
-              </div>
-            );
-          })} */}
-          <p>{singlePost.country}</p>
-          <p>{singlePost.description}</p>
-          <p>{singlePost.category}</p>
-          <p>{singlePost.creator.username}</p>
+          <img src={imageUrl} alt={singlePost.title} />
+          <p className="post-details" id="country">
+            <img
+              className="location-icon"
+              src="LogoDarkPoint.png"
+              alt="point icon"
+            />{" "}
+            {singlePost.country}
+          </p>
+          <p className="post-details">{singlePost.description}</p>
+          <p className="post-details-small">{singlePost.category}</p>
+          <p className="post-details-small">by {singlePost.creator.username}</p>
           {singlePost.creator._id === loggedUser._id ? (
             <div>
               <Link to={`/destinations/edit/${params.postId}`}>
-                <button>Edit</button>
+                <button className="standard-btn-post">Edit</button>
               </Link>
-              <button onClick={handleDeletePost}>Delete</button>
+              <button className="standard-btn-post" onClick={handleDeletePost}>
+                Delete
+              </button>
               <br />
             </div>
           ) : null}
-          <button onClick={handleFavourites}>Add to Favourites</button>
+          <button className="reset-btn" onClick={handleFavourites}>
+            <img src="LogoHeartOff.png" alt="heart" />
+          </button>
           <br />
           <form onSubmit={handleComment}>
             <label htmlFor="comment">Comment:</label>
@@ -138,7 +142,9 @@ function PostDetails() {
               value={comment}
               onChange={(e) => setComment(e.target.value)}
             ></textarea>
-            <button type="submit">Submit</button>
+            <button className="standard-btn-post" type="submit">
+              Submit
+            </button>
           </form>
           {postComments.map((comment) => (
             <p key={comment._id}>
@@ -147,7 +153,10 @@ function PostDetails() {
               by {comment.creator.username}
               {comment.creator._id === loggedUser._id ? (
                 <div>
-                  <button onClick={() => handleDeleteComment(comment._id)}>
+                  <button
+                    className="standard-btn-post"
+                    onClick={() => handleDeleteComment(comment._id)}
+                  >
                     Delete
                   </button>
                 </div>

@@ -15,7 +15,7 @@ import {
 import { AuthContext } from "../context/auth.context";
 
 function PostDetails() {
-  const { isLoggedIn, authenticateUser, loggedUser } = useContext(AuthContext);
+  const { loggedUser } = useContext(AuthContext);
 
   const navigate = useNavigate();
 

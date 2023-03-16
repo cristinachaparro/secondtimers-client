@@ -1,8 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
+
 import { destinationsService } from "../services/post.services";
 
+import { AuthContext } from "../context/auth.context";
+
 function Destinations() {
+  const { loggedUser } = useContext(AuthContext);
+
   const navigate = useNavigate();
 
   const [allPosts, setAllPosts] = useState(null);
@@ -31,9 +36,11 @@ function Destinations() {
     <div id="posts-list">
       <h1>Destinations</h1>
 
-      <Link to={"/destinations/create-form"}>
-        <button className="standard-btn">Create</button>
-      </Link>
+      {loggedUser ? (
+        <Link to={"/destinations/create-form"}>
+          <button className="standard-btn">Create</button>
+        </Link>
+      ) : null}
       {allPosts.map((eachPost) => {
         return (
           <Link

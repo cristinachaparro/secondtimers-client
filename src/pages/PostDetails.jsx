@@ -27,7 +27,6 @@ function PostDetails() {
 
   // FAVOURITES
 
-
   const handleFavourites = async () => {
     try {
       await addFavouriteService(params.postId);
@@ -35,10 +34,7 @@ function PostDetails() {
     } catch (error) {
       navigate("/error");
     }
-    
-    
   };
-
 
   // POSTS
 
@@ -51,7 +47,7 @@ function PostDetails() {
     }
   };
 
-// COMMENTS
+  // COMMENTS
 
   const handleComment = async (e) => {
     e.preventDefault();
@@ -86,7 +82,7 @@ function PostDetails() {
     setPostComments(filteredComments);
   };
 
-// GET DATA
+  // GET DATA
 
   useEffect(() => {
     getData();
@@ -132,18 +128,17 @@ function PostDetails() {
             <p className="post-details">{singlePost.description}</p>
             <p className="post-details-small">{singlePost.category}</p>
             <Link to={`/profile/${singlePost.creator._id}`}>
-            <p className="post-details-small">
-              by {singlePost.creator.username}
-            </p>
+              <p className="post-details-small">
+                by {singlePost.creator.username}
+              </p>
             </Link>
-            
+
             <button className="reset-btn" onClick={handleFavourites}>
               <img
                 className="icon"
                 src="https://res.cloudinary.com/dn6kyb2kf/image/upload/v1678976697/secondtimers/icons/LogoHeartOn_gxiqcn.png"
                 alt="heart"
               />
-            
             </button>
             {singlePost.creator._id === loggedUser._id ? (
               <div>
@@ -164,15 +159,12 @@ function PostDetails() {
             <div id="comment-creation">
               <form onSubmit={handleComment}>
                 <label htmlFor="comment">Comment:</label>
-                <br />
                 <textarea
-                  width="300px"
                   height="150px"
                   id="comment"
                   value={comment}
                   onChange={(e) => setComment(e.target.value)}
                 ></textarea>
-                <br />
                 <button className="standard-btn-post" type="submit">
                   Submit
                 </button>
@@ -180,25 +172,25 @@ function PostDetails() {
             </div>
             {postComments.map((comment) => (
               <div key={comment._id} id="comment-section">
+                <hr />
                 <p>
                   {comment.comment}
                   <br />
                   <Link to={`/profile/${comment.creator._id}`}>
-                  by {comment.creator.username}
+                    by {comment.creator.username}
                   </Link>
                   <br />
-                  {comment.creator._id === loggedUser._id ? (
-                    <span>
-                      <button
-                        className="standard-btn-post"
-                        onClick={() => handleDeleteComment(comment._id)}
-                      >
-                        Delete
-                      </button>
-                    </span>
-                  ) : null}
                 </p>
-                <hr />
+                {comment.creator._id === loggedUser._id ? (
+                  <span>
+                    <button
+                      className="standard-btn-post"
+                      onClick={() => handleDeleteComment(comment._id)}
+                    >
+                      Delete
+                    </button>
+                  </span>
+                ) : null}
               </div>
             ))}
           </div>

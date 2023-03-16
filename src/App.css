@@ -233,6 +233,19 @@ h1 {
   display: flex;
   width: 85%;
   justify-content: center;
+  margin-bottom: 10px;
+}
+
+#comment-creation form {
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+#comment-creation .standard-btn-post {
+  margin: 0 auto;
 }
 
 #comment-section {
@@ -242,17 +255,13 @@ h1 {
   align-items: center;
 }
 
+#comment-section p,
 #comment-section hr {
   width: 85%;
 }
 
 #comment {
-  width: 85%;
-}
-
-textarea {
-  width: 300px;
-  height: auto;
+  width: 100%;
 }
 
 /* PROFILE */

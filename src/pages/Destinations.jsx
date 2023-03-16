@@ -2,11 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { destinationsService } from "../services/post.services";
 
-
 function Destinations() {
   const navigate = useNavigate();
-
-
 
   const [allPosts, setAllPosts] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
@@ -34,20 +31,18 @@ function Destinations() {
     <div id="posts-list">
       <h1>Destinations</h1>
 
-      
       <Link to={"/destinations/create-form"}>
         <button className="standard-btn">Create</button>
       </Link>
       {allPosts.map((eachPost) => {
         return (
-          <div className="post-container" key={eachPost._id}>
+          <Link
+            key={eachPost._id}
+            className="post-container"
+            to={`/destinations/${eachPost._id}`}
+          >
             <p id="title-container">
-              <Link
-                className="destinations-title"
-                to={`/destinations/${eachPost._id}`}
-              >
-                {eachPost.title}
-              </Link>
+              <h3 className="destinations-title">{eachPost.title}</h3>
             </p>
             <p className="location-name">
               <img
@@ -62,7 +57,7 @@ function Destinations() {
               src={eachPost.image}
               alt={eachPost.title}
             />
-          </div>
+          </Link>
         );
       })}
     </div>

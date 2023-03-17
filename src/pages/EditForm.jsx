@@ -30,7 +30,6 @@ function EditForm() {
   const handleCountryChange = (e) => setCountry(e.target.value);
   const handleDescriptionChange = (e) => setDescription(e.target.value);
   const handleFileUpload = async (event) => {
-    // console.log("The file to be uploaded is: ", e.target.files[0]);
 
     if (!event.target.files[0]) {
       // to prevent accidentally clicking the choose file button and not selecting a file

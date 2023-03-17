@@ -1,70 +1,221 @@
-# Getting Started with Create React App
+# SECONDTIMERS
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<br>
 
-## Available Scripts
+## Description
 
-In the project directory, you can run:
+This is an app that allows travellers to share not so typical places.
 
-### `npm start`
+## User Stories
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **404:** As an anon/user I can see a 404 page if I try to reach a page that does not exist so that I know it's my fault
+- **Signup:** As an anon I can sign up in the platform so that I can start creating and managing my backlog
+- **Login:** As a user I can login to the platform so that I can start creating and managing my backlog
+- **Logout:** As a user I can logout from the platform so no one else can modify my information
+- **Add posts** As a user I can add posts with information and images
+- **Delete posts** As a user I can delete my own posts
+- **Edit posts** As a user I can edit my own posts
+- **Save as favorite** As a user I can save posts as favorites
+- **Delete from favorites** As a user I can remove posts from my favorites
+- **Edit profile** As a user I can edit my own profile
+- **Check profiles** As a user I can check other people's profiles
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Backlog
 
-### `npm test`
+- Friends list
+- Filter by country
+- Search bar
+- Add more continents
+- Search by continent
+- Reply to comments
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<br>
 
-### `npm run build`
+# Client / Frontend
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## React Router Routes (React App)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+`/api/` => Home => public => Home page
+`/api/auth/signup` => Signup => public => Signup form, navigate to login
+`/api/auth/login` => Login => public => Login form, navigate to destinations
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+`/api/profile` => MyProfile => private => Private profile
+`/api/user/:id` => AthorProfile => public => Author's profile
+`/api/profile/edit-form` => EditProfile => private => Edit your own profile
+`/api/profile/favourites` => MyFavourites => private => Save your favourite posts
 
-### `npm run eject`
+`/api/destinations` => Destinations => public => List of all posts
+`/api/destinations/create-form` => CreateForm => private => Create form, navigate to post details
+`/api/destinations/:postId` => PostDetails => public => Post details
+`/api/destinations/edit/:postId` => EditForm => private => Edit your own post
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+`/api/error` => Error => public => Display an error message
+`api/*` => NotFound => public => Display an error message
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Components
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Login
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Signup
 
-## Learn More
+- EditProfile
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- MyFavourites
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- MyProfile
 
-### Code Splitting
+- AuthorProfile
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Destinations
 
-### Analyzing the Bundle Size
+- CreateForm
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- PostDetails
 
-### Making a Progressive Web App
+- EditForm
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Error
 
-### Advanced Configuration
+- NotFound
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- NavBar
 
-### Deployment
+## Services
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Auth Service
+  signupService,
+  loginService,
+  verifyService,
+  myProfileService,
+  updatedProfileService,
+  myFavouritesService,
+  addFavouriteService,
+  deleteFavouriteService,
 
-### `npm run build` fails to minify
+- Post Service
+  newPostService,
+  destinationsService,
+  updatedPostService,
+  getPostService,
+  deletePostService,
+  getCountriesService,
+  getCategoriesService,
+  getCommentsService,
+  newCommentService,
+  editCommentService,
+  deleteCommentService,
+  authorProfileService,
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Upload Service
+  UploadImageService
+
+<br>
+
+# Server / Backend
+
+## Models
+
+User Model
+
+```javascript
+  {
+    username: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    email: {
+      type: String,
+      required: [true, "Email is required."],
+      unique: true,
+      lowercase: true,
+      trim: true,
+    },
+    password: {
+      type: String,
+      required: [true, "Password is required."],
+    },
+    profilePicture: String,
+    location: String,
+    age: Number,
+    favouritePosts: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Post",
+      },
+    ],
+  }
+
+```
+
+Post Model
+
+```javascript
+ {
+     title: {
+    type: String,
+    required: true,
+  },
+  country: {
+    type: String,
+    // required: true,
+    enum: countries,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  image: [
+    {
+      type: String,
+    },
+  ],
+  creator: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
+  category: {
+    type: String,
+    enum: categories,
+  },
+ }
+```
+
+Post Model
+
+```javascript
+ {
+    creator: {
+    type: Schema.Types.ObjectId,
+    required: true,
+    ref: "User",
+  },
+  comment: String,
+  post: {
+    type: Schema.Types.ObjectId,
+    ref: "Post",
+  },
+
+ }
+```
+
+<br>
+
+## Links
+
+
+### Git
+
+The url to your repository and to your deployed project
+
+[Client repository Link](https://github.com/cristinachaparro/secondtimers-client)
+
+[Server repository Link](https://github.com/cristinachaparro/secondtimers-server)
+
+[Deployed App Link](https://secondtimers.netlify.app/)
+
+### Slides
+
+The url to your presentation slides
+
+[Slides Link](https://docs.google.com/presentation/d/1F8bEBsuiDMFgtozrt8sJmX-3uq9XIlFZ/edit?usp=sharing&ouid=114060438171572716229&rtpof=true&sd=true)

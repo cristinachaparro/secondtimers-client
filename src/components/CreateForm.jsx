@@ -9,8 +9,6 @@ import {
   newPostService,
 } from "../services/post.services";
 
-import axios from "axios";
-
 function CreateForm(props) {
   const navigate = useNavigate();
 
@@ -30,19 +28,6 @@ function CreateForm(props) {
   const handleCountryChange = (e) => setCountry(e.target.value);
   const handleDescriptionChange = (e) => setDescription(e.target.value);
 
-  //  const handleImageChange = (e) => {
-  //   const imagesAdded = e.target.files;
-  //   const uploadedImages = [];
-
-  //   for (let i = 0; i < imagesAdded.length; i++) {
-  //     const file = imagesAdded[i];
-  //     uploadedImages.push(file);
-
-  //     };
-
-  //     setImage([...image, uploadedImages]);
-  //   };
-
   const handleCategoryChange = (e) => setCategory(e.target.value);
 
   useEffect(() => {
@@ -50,14 +35,9 @@ function CreateForm(props) {
   }, []);
 
   const getData = async () => {
-    // const countryList = await axios.get(
-    //   "http://localhost:5005/api/destinations/country-list"
-    // );
     const countryList = await getCountriesService();
     setCountryOptions(countryList.data);
-    // const categoriesList = await axios.get(
-    //   "http://localhost:5005/api/destinations/categories"
-    // );
+
     const categoriesList = await getCategoriesService();
     setCategoryOptions(categoriesList.data);
     try {
@@ -88,8 +68,6 @@ function CreateForm(props) {
   };
 
   const handleFileUpload = async (event) => {
-    // console.log("The file to be uploaded is: ", e.target.files[0]);
-
     if (!event.target.files[0]) {
       // to prevent accidentally clicking the choose file button and not selecting a file
       return;
@@ -155,8 +133,6 @@ function CreateForm(props) {
             <img src={imageUrl} alt="img" width={200} />
           </div>
         ) : null}
-        {/* <label>Image:</label>
-        <input type="file" multiple name="image" onChange={handleImageChange} /> */}
         <label htmlFor="select">Category:</label>
         <select id="select" value={category} onChange={handleCategoryChange}>
           <option value="">Select a category:</option>

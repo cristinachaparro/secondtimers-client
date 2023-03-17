@@ -25,7 +25,6 @@ function MyFavourites() {
       setFavourites(response.data);
       setPostFavourites(favourites.data);
       setIsFetching(false);
-      //console.log(response.data)
     } catch (error) {
       navigate("/error");
     }
@@ -34,7 +33,6 @@ function MyFavourites() {
   const handleDeleteFavourite = async (postId) => {
     try {
       await deleteFavouriteService(postId);
-      console.log(postId);
       getData();
       navigate(`/profile/favourites`);
     } catch (error) {

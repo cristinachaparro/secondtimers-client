@@ -25,7 +25,6 @@ function AuthorProfiles() {
           navigate("/error");
         }
       };
-      console.log(user)
   
     
   return (

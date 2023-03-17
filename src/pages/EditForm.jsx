@@ -30,7 +30,6 @@ function EditForm() {
   const handleCountryChange = (e) => setCountry(e.target.value);
   const handleDescriptionChange = (e) => setDescription(e.target.value);
   const handleFileUpload = async (event) => {
-
     if (!event.target.files[0]) {
       // to prevent accidentally clicking the choose file button and not selecting a file
       return;
@@ -96,7 +95,7 @@ function EditForm() {
   };
 
   return (
-    <div>
+    <div className="basic-form-container">
       <h1>Edit your post:</h1>
       <form onSubmit={handlePost}>
         <label>Title:</label>
@@ -148,7 +147,9 @@ function EditForm() {
           ))}
         </select>
         <br />
-        <button type="submit">Upload</button>
+        <button className="standard-btn-post" type="submit">
+          Upload
+        </button>
         {errorMessage !== "" ? <p>{errorMessage}</p> : null}
       </form>
     </div>
